@@ -1,6 +1,13 @@
 <!-- Carbon Standard Title and Legend -->
 <header class="flex flex-col lg:flex-row justify-between leading-tight lg:items-center py-4 px-4 gap-2 lg:gap-0 bg-white dark:bg-black/30">
-  <h2 class="text-2xl lg:text-3xl font-medium">Technology Carbon Standard</h2>
+  <div>
+    <h2 class="text-2xl lg:text-3xl font-medium">Technology Carbon Standard</h2>
+    <select id="filterCategories" name="filter">
+      <option value="">No Filter</option>
+      <option value="node">Node</option>
+      <option value="express">Express</option>
+    </select>
+  </div>
   <div class="flex flex-col gap-1">
     <div class="flex h-8 gap-2 items-center">
       <div class="relative h-full w-24 flex border border-white rounded overflow-hidden">
@@ -18,6 +25,7 @@
       <div>GHG Protocol Scope</div>
     </div>
   </div>
+
 </header>
 
 <div class="flex flex-col lg:flex-row not-prose">
@@ -37,10 +45,9 @@
       <div class="hidden lg:block w-0 h-0 z-10 cat-u-arrow-right"></div>
     </div>
     <div class="h-full lg:mr-[2rem] px-4 pt-4 pb-2 cat-u-body">
-      <p>Upstream emissions relating to the embodied carbon of hardware and the development of software.</p>
 
       <h4 class="mt-4 mb-2 text-lg font-medium">Software</h4>
-      {% include categoryItem.html bgColor="cat-u" icon="./assets/images/icons.svg#web" description="Off The Shelf including Open-Source Software" link="/categories/upstream#software" %}
+      {% include categoryItem.html id="CatUSoftware" bgColor="cat-u" icon="./assets/images/icons.svg#web" description="Off The Shelf including Open-Source Software" link="/categories/upstream#software" %}
 
       <h4 class="mt-4 mb-2 text-lg font-medium">Hardware Manufacture, Transport and Installation</h4>
       {% include categoryItem.html id="CatUEmployeeHardware" bgColor="cat-u" icon="./assets/images/icons.svg#devices" description="User Hardware (laptops, printers, etc.)" link="/categories/upstream#employee-hardware" %}
@@ -61,23 +68,21 @@
       <div class="hidden lg:block w-0 h-0 z-10 cat-o-arrow-right"></div>
     </div>
     <div class="h-full lg:-ml-[2rem] lg:mr-[2rem] px-4 pt-4 pb-2 cat-o-body">
-      <p>Operational emissions are associated to the running of business IT functions and systems. Each operational function may have a hybrid of IT infrastructure across direct and/or indirect emissions.</p>
 
       <div class="flex flex-col lg:flex-row gap-4 mt-4">
 
         <!-- DIRECT (Category O) -->
-        <div class="relative px-2 py-2 border-2 border-white rounded-md">
+        <div class="w-full relative px-2 py-2 border-2 border-white rounded-md">
           <h4 class="mb-2 text-lg font-medium">Direct</h4>
           <div class="absolute right-2 -top-2">
             {% include categoryLabel.html label="Category O" bgColor="cat-o" scope="2" %}
           </div>
-          <p class="mb-2">Direct running costs that are attributed to the electricity powering servers, networks and devices.</p>
           {% include categoryItem.html id="CatOUserDevices" bgColor="cat-o" icon="./assets/images/icons.svg#devices" description="User Devices" link="/categories/operational#employee-devices" %}
           {% include categoryItem.html id="CatONetworkDevices" bgColor="cat-o" icon="./assets/images/icons.svg#router" description="Networking and Infrastructure" link="/categories/operational#networking-devices" %}
           {% include categoryItem.html id="CatOServers" bgColor="cat-o" icon="./assets/images/icons.svg#storage" description="Servers and Storage" link="/categories/operational#servers-and-storage" %}
 
           <!-- DIRECT (Category G) -->
-          <div class="relative">
+          <div class="relative top-2">
             <hr class="border-white mb-2">
             <div class="absolute right-2 -top-2">
               {% include categoryLabel.html label="Category G" bgColor="cat-g" scope="1" %}
@@ -87,12 +92,11 @@
         </div>
 
         <!-- INDIRECT (Category C) -->
-        <div class="relative px-2 py-2 border-2 border-white rounded-md">
+        <div class="w-full relative px-2 py-2 border-2 border-white rounded-md">
           <h4 class="mb-2 text-lg font-medium">Indirect</h4>
           <div class="absolute right-2 -top-2">
             {% include categoryLabel.html label="Category C" bgColor="cat-c" scope="3" %}
           </div>
-          <p class="mb-2">Indirect running carbon costs that are attributed to external hardware and service solutions.</p>
           {% include categoryItem.html id="CatCCloud" bgColor="cat-c" icon="./assets/images/icons.svg#cloud" description="Cloud Services" link="/categories/operational#cloud-services" %}
           {% include categoryItem.html id="CatCSaas" bgColor="cat-c" icon="./assets/images/icons.svg#web" description="SaaS" link="/categories/operational#saas" %}
           {% include categoryItem.html id="CatCManaged" bgColor="cat-c" icon="./assets/images/icons.svg#storage" description="Managed Services" link="/categories/operational#managed-services" %}
@@ -117,7 +121,7 @@
       </div>
     </div>
     <div class="h-full lg:-ml-[2rem] px-4 pt-4 pb-2 cat-d-body">
-      <p>Carbon associated with the use of products and services produced by the business.</p>
+      <!-- <p>Carbon associated with the use of products and services produced by the business.</p> -->
 
       <h4 class="mt-4 mb-2 text-lg font-medium">End Use (B2B, B2C)</h4>
       {% include categoryItem.html id="CatDEendUserDevices" bgColor="cat-d" icon="./assets/images/icons.svg#devices" description="End-User Devices" link="/categories/downstream#end-user-devices" %}
@@ -128,24 +132,59 @@
 
 </div>
 
-<div class="flex justify-center items-center px-4 py-4 mt-2 lg:mt-0 bg-black/25 dark:bg-black/25">
-  <div>
-    <h4 class="mb-2 text-lg font-medium">Out of Scope</h4>
-    <div class="flex items-center gap-2">
-      <div class="flex justify-center items-center size-12 bg-charcoal-600 dark:bg-charcoal-800">
-        <svg aria-hidden="true" class="w-8 h-8 fill-white"><use href="./assets/images/icons.svg#groups"></use></svg>
-      </div>
-      <div class="flex justify-center items-center size-12 bg-charcoal-600 dark:bg-charcoal-800">
-        <svg aria-hidden="true" class="w-8 h-8 fill-white"><use href="./assets/images/icons.svg#domain"></use></svg>
-      </div>
-      <div class="flex justify-center items-center size-12 bg-charcoal-600 dark:bg-charcoal-800">
-        <svg aria-hidden="true" class="w-8 h-8 fill-white"><use href="./assets/images/icons.svg#commute"></use></svg>
-      </div>
-      People, Buildings and Travel
-    </div>
-  </div>
-</div>
+<script>
 
-<div class="flex justify-end px-2 pt-2 bg-black/5">
-  {% include creativeCommons.html %}
-</div>
+  const filterCategories = document.getElementById('filterCategories');
+
+  const CatUSoftware = document.getElementById('CatUSoftware');
+  const CatUEmployeeHardware = document.getElementById('CatUEmployeeHardware');
+  const CatUNetworkHardware = document.getElementById('CatUNetworkHardware');
+  const CatUServerHardware = document.getElementById('CatUServerHardware');
+  const CatOServers = document.getElementById('CatOServers');
+  const CatONetworkDevices = document.getElementById('CatONetworkDevices');
+  const CatOUserDevices = document.getElementById('CatOUserDevices');
+  const CatGGenerators = document.getElementById('CatGGenerators');
+  const CatCCloud = document.getElementById('CatCCloud');
+  const CatCSaas = document.getElementById('CatCSaas');
+  const CatCManaged = document.getElementById('CatCManaged');
+  const CatDEendUserDevices = document.getElementById('CatDEendUserDevices');
+  const CatDNetworkDataTransfer = document.getElementById('CatDNetworkDataTransfer');
+  const CatDInfrastructure = document.getElementById('CatDInfrastructure');
+
+  const selected = "bg-white/80";
+  // const filtered = "opacity-80";
+
+  filterCategories.addEventListener('change', (event) => {
+    CatUSoftware.classList.remove(selected);
+    CatUEmployeeHardware.classList.remove(selected);
+    CatUNetworkHardware.classList.remove(selected);
+    CatUServerHardware.classList.remove(selected);
+    CatOServers.classList.remove(selected);
+    CatONetworkDevices.classList.remove(selected);
+    CatOUserDevices.classList.remove(selected);
+    CatGGenerators.classList.remove(selected);
+    CatCCloud.classList.remove(selected);
+    CatCSaas.classList.remove(selected);
+    CatCManaged.classList.remove(selected);
+    CatDEendUserDevices.classList.remove(selected);
+    CatDNetworkDataTransfer.classList.remove(selected);
+    CatDInfrastructure.classList.remove(selected);
+
+    if (event.target.value === 'node') {
+      CatUEmployeeHardware.classList.add(selected);
+      CatOUserDevices.classList.add(selected);
+      CatCCloud.classList.add(selected);
+      CatCSaas.classList.add(selected);
+      CatDNetworkDataTransfer.classList.add(selected);
+      CatDInfrastructure.classList.add(selected);
+    } else if (event.target.value === 'express') {
+      CatUSoftware.classList.add(selected);
+      CatUEmployeeHardware.classList.add(selected);
+      CatOUserDevices.classList.add(selected);
+      CatCCloud.classList.add(selected);
+      CatCSaas.classList.add(selected);
+      CatDEendUserDevices.classList.add(selected);
+      CatDNetworkDataTransfer.classList.add(selected);
+    }
+  });
+</script>

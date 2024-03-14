@@ -1,4 +1,4 @@
-<{% if include.link %}a href="{{ include.link }}" aria-label="{{ include.description }}"{% else %}div{% endif %} class="flex gap-2 items-center mb-2 {% if include.link %}no-underline text-inherit hover:bg-white/30{% endif %}">
+<{% if include.link %}a id="{{ include.id }}" href="{{ include.link }}" aria-label="{{ include.description }}"{% else %}div id="{{ include.id }}"{% endif %} class="flex gap-2 items-center mb-2 {% if include.link %}no-underline text-inherit hover:bg-white/30{% endif %}">
   <div class="flex justify-center items-center size-12 {{ include.bgColor }}">
     <svg aria-hidden="true" class="w-8 h-8 fill-white"><use href="{{ include.icon }}"></use></svg>
   </div>
