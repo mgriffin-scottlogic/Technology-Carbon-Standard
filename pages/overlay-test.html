@@ -1,0 +1,195 @@
+---
+layout: default
+title: Overlay
+permalink: /overlay-test
+---
+
+<h1>Architecture</h1>
+
+As an architect you can exert significant influence on a company's tech carbon emissions. You might be a technical/solutions/enterprise/other architect and although the scope of responsibility can vary across roles there's many activities common to all where you can make a difference to carbon emissions inlcuding:
+
+Setting the tech strategy
+Promoting best practice and setting tech principles
+Leading technical selection, e.g. of a cloud vendor or a SaaS product
+Designing architecture (from enterprise to technical)
+Setting NFRs
+The first couple are high level activities that could include:
+
+setting the cloud vs on-prem strategy
+promoting technical principles around resilience, serverless vs container or data retention.
+The remaining 3 are actually all about NFRs to some degree. Tech selection will be done against a set of functional and non-functional requirements and architecture design choices will be done against a set of NFRs, e.g. to promote availability or low cost. We'll start by looking at what an architect can do around strategy and principles for carbon reduction and then move onto the NFRs that derive from this.
+
+{% include linkedHeading.html heading="Setting strategy and best practice" level=2 %}
+
+The emission categories below takes the standard and overlays on the categories some examples of how you might influence them. These are just suggestions to trigger some ideas - figure out your own principles as appropriate to your organisation.
+
+<article class="not-prose mt-4">
+
+  <section class="relative -cat-u-body space-y-4 p-4">
+
+    <h2 class="-mx-4 -mt-4 px-4 py-2 cat-u text-xl">Upstream Emissions</h2>
+
+    <div class="absolute right-2 top-4">
+      {% include categoryLabel.html label="Category U" bgColor="cat-u" scope="3" %}
+    </div>
+
+    <p>The architect is at the center of vendor selection and so can promote green requirements in selection.</p>
+
+    <h3 class="mb-2 text-lg font-medium">Software</h3>
+    {% include categoryItem.html bgColor="cat-u" icon="./assets/images/icons.svg#web" description="Off The Shelf including Open-Source Software" link="/categories/upstream#software" %}
+
+    <ul class="list-disc list-inside">
+      <li>Set strategy around COTS/OSS vs in-house</li>
+      <li>Set principle to prefer green vendors</li>
+    </ul>
+
+    <p>All software creation comes with a cost and the first thing you might decide to do is to trade off open source and COTS software against in-house. Some of the in-house software carbon costs are out of the scope in this standard because they are non-technology items like buildings and transport for employees. Still they count in the overall picture of your org and if 1 company creates software that's less emissions than if 20 companies all create the same software. You may also wish to prefer vendors who report on their emissions and follow sustainability best practices in order to push software and machine learning model creators to be more sustainable. e.g. training models with renewable electricity.</p>
+
+    <h3 class="mt-4 mb-2 text-lg font-medium">Hardware Manufacture, Transport and Installation</h3>
+    {% include categoryItem.html id="CatUEmployeeHardware" bgColor="cat-u" icon="./assets/images/icons.svg#devices" description="User Hardware (laptops, printers, etc.)" link="/categories/upstream#employee-hardware" %}
+    {% include categoryItem.html id="CatUNetworkHardware" bgColor="cat-u" icon="./assets/images/icons.svg#router" description="Networking and Infrastructure Hardware" link="/categories/upstream#networking-hardware" %}
+    {% include categoryItem.html id="CatUServerHardware" bgColor="cat-u" icon="./assets/images/icons.svg#storage" description="Servers and Storage Hardware" link="/categories/upstream#data-center-and-server-hardware" %}
+
+    <p>Any hardware you buy in or acquire from data centre servers to employee laptops required energy produced emissions in manufacture and transport. Not all architects will get involved in hardware selection - servers and network equipment may fall under data centre architects for example. Where you do though you can apply pressure to ensure there is a low carbon strategy for:</p>
+
+    <ul class="list-disc list-inside">
+      <li>Renewal cycles: i.e. how often we should replace hardware. Less hardware bought per year is less emissions</li>
+      <li>Recycling. Check the criteria under which your current disposal partners were selected and if recycling and low energy usage were not considerations make sure they are next time the contrcats come around.</li>
+      <li>Procurement. Do the procurement teams understand the emissions with each item they supply? If not kick-off an initiative to look at this and ensure equipment is bought with a known embodied carbon and ideally a target to keep it under.</li>
+    </ul>
+
+  </section>
+
+  <section class="-cat-o-body space-y-4 p-4">
+
+    <h2 class="-mx-4 -mt-4 px-4 py-2 cat-o text-xl">Operational Emissions</h2>
+
+    <p>Whether you are running in the cloud or on-prem architects can promote architectural patterns and ways of using resources to minimise day to day energy usage. This might include requiring use of efficient APIs such as gRPC, sharing resources as much as possible, carbon aware computing and having data dormancy strategies so data isn't held and stored later than needed. These may also have benefits on resilience, cost and compliance and the architect should take a holistic view.</p>
+
+    <p>They will work with dev-ops or developers or date centre engineers on tech strategies and should ensure carbon emissions are parts of those strategies.</p>
+
+    <p>Observability is a key part of technical strategy that requires a joined up apprach between dev-ops, development and operations and architects should promote energy observability as part of this.</p>
+
+    <!-- DIRECT (Category O) -->
+    <div class="w-full relative px-4 py-2 border-2 border-white rounded-md">
+      <h4 class="mb-2 text-lg font-medium">Direct</h4>
+      <div class="absolute right-2 -top-2">
+        {% include categoryLabel.html label="Category O" bgColor="cat-o" scope="2" %}
+      </div>
+
+      <p class="mb-4">In the embodied section we talked about hardware selection maximising lifetime and having low manufacture emissions. Procurement strategy should also include observability and emissions in use. Accurate energy obserability (and thus carbon monitoring) is not possible without hardware support and so this must be a consideration when selecting hardware for the data centre.</p>
+
+      <div class="space-y-4 mb-4">
+        {% include categoryItem.html
+          id="CatOUserDevices"
+          bgColor="cat-o"
+          icon="./assets/images/icons.svg#devices"
+          description="User Devices"
+          link="/categories/operational#employee-devices"
+        %}
+        <p>Where architects are involved in workforce IT like employee devices there's a few of areas they can influence:</p>
+        <ol class="list-decimal list-inside">
+          <li>Like servers and other infra prefer devices with low operational power, e.g. an ARM chip device if an option.</li>
+          <li>Put requirements on device power management. Ensure there is proper testing of device configuration such that laptops run in low power modes when with low activity and go to sleep quickly.</li>
+          <li>Device a strategy for device power monitoring which would make carbon reporting much easier and allow improvements in devices or their configuration to be observed over time.</li>
+        </ol>
+      </div>
+
+      <div class="space-y-4 mb-4">
+        {% include categoryItem.html
+          id="CatONetworkDevices"
+          bgColor="cat-o"
+          icon="./assets/images/icons.svg#router"
+          description="Networking and Infrastructure"
+          link="/categories/operational#networking-devices"
+        %}
+        <p>As with servers, architects can add usage emissions to the procurement evaluation criteria. Architects can help translate business growth requirements into expected data transfer needs and ensure the correct size of networking hardware is selected that is well utilised. Typically networking hardware doesn't scale down in power in the way standard servers do and so under utilised hardware will have a heavier cost.</p>
+        <p>Where there's virtual networking functions running purely as software the same utilisation concerns apply as with any application - maximise software, albeit traded off against maximum latency and contention needs, i.e. promote the virtualisation (in software sense of the word) of the software networking appliances.</p>
+        <p>Having application principles to minimise data transfer can reduce the amount of network traffic and even if this makes only a small reduction to the energy usage of switches and routers it may slow the need to add more hardware during growth. e.g. gRPC, persistent TCP connections.</p>
+        <p>Patterns like multi-cast for video can be pursued to reduce network capacity needs in the data centre (and ISP). Similarly large file transfers can be architected to take the most direct route without intermediary systems reducing network emissions and costs. A preference for larger more monolithic applications may also reduce network traffic - but can be other costs.</p>
+      </div>
+
+      <div class="space-y-4 mb-4">
+        {% include categoryItem.html
+          id="CatOServers"
+          bgColor="cat-o"
+          icon="./assets/images/icons.svg#storage"
+          description="Servers and Storage"
+          link="/categories/operational#servers-and-storage"
+        %}
+        <p>As well as the general application design patterns senior architects can drive virtualisation strategy for on-prem. For example they could create a plan for containerisation of workloads (e.g. to Kubernetes) and a migration plan in order to maximise the utilisation of on-prem hardware.</p>
+      </div>
+
+      <!-- DIRECT (Category G) -->
+      <div class="relative top-2">
+        <hr class="border-white mb-2">
+        <div class="absolute right-2 -top-2">
+          {% include categoryLabel.html label="Category G" bgColor="cat-g" scope="1" %}
+        </div>
+        {% include categoryItem.html
+          id="CatGGenerators"
+          bgColor="cat-g"
+          icon="./assets/images/icons.svg#bolt"
+          description="Generators"
+          link="/categories/operational#generators"
+        %}
+      </div>
+    </div>
+
+    <!-- INDIRECT (Category C) -->
+    <div class="w-full relative px-4 py-2 border-2 border-white rounded-md">
+      <h4 class="mb-2 text-lg font-medium">Indirect</h4>
+      <div class="absolute right-2 -top-2">
+        {% include categoryLabel.html label="Category C" bgColor="cat-c" scope="3" %}
+      </div>
+
+      <p class="mb-4">All the indirect solutions involve a vendor and so it is important that archtects, where involved in vendor selection include carbon non functional requirements. This should include both how the vendor reports emissions but also the level of their emissions and how "green" their electricity is.</p>
+
+      <div class="space-y-4 mb-4">
+        {% include categoryItem.html
+          id="CatCCloud"
+          bgColor="cat-c"
+          icon="./assets/images/icons.svg#cloud"
+          description="Cloud Services"
+          link="/categories/operational#cloud-services"
+          note="Promote low energy architecture and monitoring."
+        %}
+
+        <p>The architect can set principles and present patterns for sustainable application development as per on-prem. In addition they may require the use of cloud spefific patterns where applicable such as the use of serverless for infrequently used applications.</p>
+
+        <p>The principle of observability remains the same and should be a key technical principle pushed down from architects. For cloud the architect must find different models to assess cloud energy usage in the absence of hardware monitoring and may recruit data science teams to support this.</p>
+      </div>
+
+      <div class="space-y-4 mb-4">
+        {% include categoryItem.html
+          id="CatCSaas"
+          bgColor="cat-c"
+          icon="./assets/images/icons.svg#web"
+          description="SaaS"
+          link="/categories/operational#saas"
+          note="Create a SaaS vendor strategy and set principles to minimise unneccessary API use."
+        %}
+
+        <p>The main levers here for the architect are in the aforementioned vendor selection.</p>
+
+        <p>Technical principles should also apply for the use of a vendor service as much as for an internal service, e.g. around not calling APIs unnecessarily or caching.</p>
+
+      </div>
+
+      <div class="space-y-4 mb-4">
+        {% include categoryItem.html
+          id="CatCManaged"
+          bgColor="cat-c"
+          icon="./assets/images/icons.svg#storage"
+          description="Managed Services"
+          link="/categories/operational#managed-services"
+          note="Create an IaaS vendor strategy."
+        %}
+
+        <p>As well as vendor selection and good software design patterns there may be options to improve utilisation as with on-prem, e.g. devising a containerisation strategy to better utilise vendor provided virtualisation. Where the service is data related principles around data retention can reduce emissions.</p>
+      </div>
+
+    </div>
+  </section>
+</article>
+

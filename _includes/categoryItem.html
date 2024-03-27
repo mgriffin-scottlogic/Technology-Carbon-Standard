@@ -1,6 +1,9 @@
-<{% if include.link %}a id="{{ include.id }}" href="{{ include.link }}" aria-label="{{ include.description }}"{% else %}div id="{{ include.id }}"{% endif %} class="flex gap-2 items-center mb-2 {% if include.link %}no-underline text-inherit hover:bg-white/30{% endif %}">
-  <div class="flex justify-center items-center size-12 {{ include.bgColor }}">
-    <svg aria-hidden="true" class="w-8 h-8 fill-white"><use href="{{ include.icon }}"></use></svg>
+<{% if include.link %}a id="{{ include.id }}" href="{{ include.link }}" aria-label="{{ include.description }}"{% else %}div id="{{ include.id }}"{% endif %} class="flex gap-2 {% if include.note %}items-start{% else %}items-center{% endif %} mb-2 {% if include.link %}no-underline text-inherit hover:bg-white/30{% endif %}">
+  <div class="flex justify-center {% if include.note %}items-start{% endif %} w-12 {{ include.bgColor }}">
+    <svg aria-hidden="true" class="w-8 h-auto {% if include.note %}{% else %}h-12{% endif %} fill-white"><use href="{{ include.icon }}"></use></svg>
   </div>
-  <div class="flex-1 leading-tight">{{ include.description }}</div>
+  <div class="flex-1 leading-tight">
+    <div class="font-medium">{{ include.description }}</div>
+    <div class="font-light text-sm">{{ include.note }}</div>
+  </div>
 </{% if include.link %}a{% else %}div{% endif %}>

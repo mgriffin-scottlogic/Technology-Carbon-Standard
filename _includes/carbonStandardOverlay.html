@@ -77,7 +77,7 @@
           <div class="absolute right-2 -top-2">
             {% include categoryLabel.html label="Category O" bgColor="cat-o" scope="2" %}
           </div>
-          {% include categoryItem.html id="CatOUserDevices" bgColor="cat-o" icon="./assets/images/icons.svg#devices" description="User Devices" link="/categories/operational#employee-devices" %}
+          {% include categoryItem.html id="CatOUserDevices" bgColor="cat-o" icon="./assets/images/icons.svg#devices" description="User Devices" link="/categories/operational#employee-devices" note="Typically employee devices that are used to develop the software on." %}
           {% include categoryItem.html id="CatONetworkDevices" bgColor="cat-o" icon="./assets/images/icons.svg#router" description="Networking and Infrastructure" link="/categories/operational#networking-devices" %}
           {% include categoryItem.html id="CatOServers" bgColor="cat-o" icon="./assets/images/icons.svg#storage" description="Servers and Storage" link="/categories/operational#servers-and-storage" %}
 
@@ -183,8 +183,8 @@
       CatOUserDevices.classList.add(selected);
       CatCCloud.classList.add(selected);
       CatCSaas.classList.add(selected);
-      CatDEendUserDevices.classList.add(selected);
       CatDNetworkDataTransfer.classList.add(selected);
+      CatDInfrastructure.classList.add(selected);
     }
   });
 </script>
