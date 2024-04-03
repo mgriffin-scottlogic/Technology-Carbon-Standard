@@ -1,12 +1,9 @@
+{% assign overlay = include.overlay %}
+
 <!-- Carbon Standard Title and Legend -->
 <header class="flex flex-col lg:flex-row justify-between leading-tight lg:items-center py-4 px-4 gap-2 lg:gap-0 bg-white dark:bg-black/30">
   <div>
     <h2 class="text-2xl lg:text-3xl font-medium">Technology Carbon Standard</h2>
-    <select id="filterCategories" name="filter">
-      <option value="">No Filter</option>
-      <option value="node">Node</option>
-      <option value="express">Express</option>
-    </select>
   </div>
   <div class="flex flex-col gap-1">
     <div class="flex h-8 gap-2 items-center">
@@ -37,7 +34,7 @@
         <div class="relative">
           <h3 class="pl-2 mb-0 text-xl font-medium text-white"><a class="text-inherit hover:text-inherit hover:opacity-80" href="/categories/upstream">Upstream Emissions</a></h3>
           <div class="absolute right-0 top-8">
-            {% include categoryLabel.html label="Category U" bgColor="cat-u" scope="3" %}
+            {% include categoryLabel.html label="CatU" %}
           </div>
         </div>
       </div>
@@ -47,12 +44,36 @@
     <div class="h-full lg:mr-[2rem] px-4 pt-4 pb-2 cat-u-body">
 
       <h4 class="mt-4 mb-2 text-lg font-medium">Software</h4>
-      {% include categoryItem.html id="CatUSoftware" bgColor="cat-u" icon="./assets/images/icons.svg#web" description="Off The Shelf including Open-Source Software" link="/categories/upstream#software" %}
+      {% include categoryItem.html
+        item="CatUSoftware"
+        selected=overlay.CatUSoftware.selected
+        description=overlay.CatUSoftware.description
+        noLink=overlay.CatUSoftware.noLink
+        link=overlay.CatUSoftware.link
+      %}
 
       <h4 class="mt-4 mb-2 text-lg font-medium">Hardware Manufacture, Transport and Installation</h4>
-      {% include categoryItem.html id="CatUEmployeeHardware" bgColor="cat-u" icon="./assets/images/icons.svg#devices" description="User Hardware (laptops, printers, etc.)" link="/categories/upstream#employee-hardware" %}
-      {% include categoryItem.html id="CatUNetworkHardware" bgColor="cat-u" icon="./assets/images/icons.svg#router" description="Networking and Infrastructure Hardware" link="/categories/upstream#networking-hardware" %}
-      {% include categoryItem.html id="CatUServerHardware" bgColor="cat-u" icon="./assets/images/icons.svg#storage" description="Servers and Storage Hardware" link="/categories/upstream#data-center-and-server-hardware" %}
+      {% include categoryItem.html
+        item="CatUEmployeeHardware"
+        selected=overlay.CatUEmployeeHardware.selected
+        description=overlay.CatUEmployeeHardware.description
+        noLink=overlay.CatUEmployeeHardware.noLink
+        link=overlay.CatUEmployeeHardware.link
+      %}
+      {% include categoryItem.html
+        item="CatUNetworkHardware"
+        selected=overlay.CatUNetworkHardware.selected
+        description=overlay.CatUNetworkHardware.description
+        noLink=overlay.CatUNetworkHardware.noLink
+        link=overlay.CatUNetworkHardware.link
+      %}
+      {% include categoryItem.html
+        item="CatUServerHardware"
+        selected=overlay.CatUServerHardware.selected
+        description=overlay.CatUServerHardware.description
+        noLink=overlay.CatUServerHardware.noLink
+        link=overlay.CatUServerHardware.link
+      %}
     </div>
     <!-- ARROW DOWN: visible on smaller screens -->
     <div class="w-full lg:hidden h-0 cat-u-arrow-down"></div>
@@ -75,19 +96,43 @@
         <div class="w-full relative px-2 py-2 border-2 border-white rounded-md">
           <h4 class="mb-2 text-lg font-medium">Direct</h4>
           <div class="absolute right-2 -top-2">
-            {% include categoryLabel.html label="Category O" bgColor="cat-o" scope="2" %}
+            {% include categoryLabel.html label="CatO" %}
           </div>
-          {% include categoryItem.html id="CatOUserDevices" bgColor="cat-o" icon="./assets/images/icons.svg#devices" description="User Devices" link="/categories/operational#employee-devices" note="Typically employee devices that are used to develop the software on." %}
-          {% include categoryItem.html id="CatONetworkDevices" bgColor="cat-o" icon="./assets/images/icons.svg#router" description="Networking and Infrastructure" link="/categories/operational#networking-devices" %}
-          {% include categoryItem.html id="CatOServers" bgColor="cat-o" icon="./assets/images/icons.svg#storage" description="Servers and Storage" link="/categories/operational#servers-and-storage" %}
+          {% include categoryItem.html
+            item="CatOUserDevices"
+            selected=overlay.CatOUserDevices.selected
+            description=overlay.CatOUserDevices.description
+            noLink=overlay.CatOUserDevices.noLink
+            link=overlay.CatOUserDevices.link
+          %}
+          {% include categoryItem.html
+            item="CatONetworkDevices"
+            selected=overlay.CatONetworkDevices.selected
+            description=overlay.CatONetworkDevices.description
+            noLink=overlay.CatONetworkDevices.noLink
+            link=overlay.CatONetworkDevices.link
+          %}
+          {% include categoryItem.html
+            item="CatOServers"
+            selected=overlay.CatOServers.selected
+            description=overlay.CatOServers.description
+            noLink=overlay.CatOServers.noLink
+            link=overlay.CatOServers.link
+          %}
 
           <!-- DIRECT (Category G) -->
           <div class="relative top-2">
             <hr class="border-white mb-2">
             <div class="absolute right-2 -top-2">
-              {% include categoryLabel.html label="Category G" bgColor="cat-g" scope="1" %}
+              {% include categoryLabel.html label="CatG" %}
             </div>
-            {% include categoryItem.html id="CatGGenerators" bgColor="cat-g" icon="./assets/images/icons.svg#bolt" description="Generators" link="/categories/operational#generators" %}
+            {% include categoryItem.html
+              item="CatGGenerators"
+              selected=overlay.CatGGenerators.selected
+              description=overlay.CatGGenerators.description
+              noLink=overlay.CatGGenerators.noLink
+              link=overlay.CatGGenerators.link
+            %}
           </div>
         </div>
 
@@ -95,11 +140,29 @@
         <div class="w-full relative px-2 py-2 border-2 border-white rounded-md">
           <h4 class="mb-2 text-lg font-medium">Indirect</h4>
           <div class="absolute right-2 -top-2">
-            {% include categoryLabel.html label="Category C" bgColor="cat-c" scope="3" %}
+            {% include categoryLabel.html label="CatC" %}
           </div>
-          {% include categoryItem.html id="CatCCloud" bgColor="cat-c" icon="./assets/images/icons.svg#cloud" description="Cloud Services" link="/categories/operational#cloud-services" %}
-          {% include categoryItem.html id="CatCSaas" bgColor="cat-c" icon="./assets/images/icons.svg#web" description="SaaS" link="/categories/operational#saas" %}
-          {% include categoryItem.html id="CatCManaged" bgColor="cat-c" icon="./assets/images/icons.svg#storage" description="Managed Services" link="/categories/operational#managed-services" %}
+          {% include categoryItem.html
+            item="CatCCloud"
+            selected=overlay.CatCCloud.selected
+            description=overlay.CatCCloud.description
+            noLink=overlay.CatCCloud.noLink
+            link=overlay.CatCCloud.link
+          %}
+          {% include categoryItem.html
+            item="CatCSaas"
+            selected=overlay.CatCSaas.selected
+            description=overlay.CatCSaas.description
+            noLink=overlay.CatCSaas.noLink
+            link=overlay.CatCSaas.link
+          %}
+          {% include categoryItem.html
+            item="CatCManaged"
+            selected=overlay.CatCManaged.selected
+            description=overlay.CatCManaged.description
+            noLink=overlay.CatCManaged.noLink
+            link=overlay.CatCManaged.link
+          %}
         </div>
       </div>
     </div>
@@ -115,7 +178,7 @@
         <div class="relative">
           <h3 class="lg:pl-[3rem] mb-0 text-xl font-medium"><a class="text-inherit hover:text-inherit hover:opacity-80" href="/categories/downstream">Downstream Emissions</a></h3>
           <div class="absolute right-0 top-8">
-            {% include categoryLabel.html label="Category D" bgColor="cat-d" scope="3" %}
+            {% include categoryLabel.html label="CatD" %}
           </div>
         </div>
       </div>
@@ -124,67 +187,28 @@
       <!-- <p>Carbon associated with the use of products and services produced by the business.</p> -->
 
       <h4 class="mt-4 mb-2 text-lg font-medium">End Use (B2B, B2C)</h4>
-      {% include categoryItem.html id="CatDEendUserDevices" bgColor="cat-d" icon="./assets/images/icons.svg#devices" description="End-User Devices" link="/categories/downstream#end-user-devices" %}
-      {% include categoryItem.html id="CatDNetworkDataTransfer" bgColor="cat-d" icon="./assets/images/icons.svg#cell-tower" description="Network Data Transfer" link="/categories/downstream#network-data-transfer" %}
-      {% include categoryItem.html id="CatDInfrastructure" bgColor="cat-d" icon="./assets/images/icons.svg#hub" description="Downstream Infrastructure" link="/categories/downstream#infrastructure" %}
+      {% include categoryItem.html
+        item="CatDEndUserDevices"
+        selected=overlay.CatDEndUserDevices.selected
+        description=overlay.CatDEndUserDevices.description
+        noLink=overlay.CatDEndUserDevices.noLink
+        link=overlay.CatDEndUserDevices.link
+      %}
+      {% include categoryItem.html
+        item="CatDNetworkDataTransfer"
+        selected=overlay.CatDNetworkDataTransfer.selected
+        description=overlay.CatDNetworkDataTransfer.description
+        noLink=overlay.CatDNetworkDataTransfer.noLink
+        link=overlay.CatDNetworkDataTransfer.link
+      %}
+      {% include categoryItem.html
+        item="CatDInfrastructure"
+        selected=overlay.CatDInfrastructure.selected
+        description=overlay.CatDInfrastructure.description
+        noLink=overlay.CatDInfrastructure.noLink
+        link=overlay.CatDInfrastructure.link
+      %}
     </div>
   </div>
 
 </div>
-
-<script>
-
-  const filterCategories = document.getElementById('filterCategories');
-
-  const CatUSoftware = document.getElementById('CatUSoftware');
-  const CatUEmployeeHardware = document.getElementById('CatUEmployeeHardware');
-  const CatUNetworkHardware = document.getElementById('CatUNetworkHardware');
-  const CatUServerHardware = document.getElementById('CatUServerHardware');
-  const CatOServers = document.getElementById('CatOServers');
-  const CatONetworkDevices = document.getElementById('CatONetworkDevices');
-  const CatOUserDevices = document.getElementById('CatOUserDevices');
-  const CatGGenerators = document.getElementById('CatGGenerators');
-  const CatCCloud = document.getElementById('CatCCloud');
-  const CatCSaas = document.getElementById('CatCSaas');
-  const CatCManaged = document.getElementById('CatCManaged');
-  const CatDEendUserDevices = document.getElementById('CatDEendUserDevices');
-  const CatDNetworkDataTransfer = document.getElementById('CatDNetworkDataTransfer');
-  const CatDInfrastructure = document.getElementById('CatDInfrastructure');
-
-  const selected = "bg-white/80";
-  // const filtered = "opacity-80";
-
-  filterCategories.addEventListener('change', (event) => {
-    CatUSoftware.classList.remove(selected);
-    CatUEmployeeHardware.classList.remove(selected);
-    CatUNetworkHardware.classList.remove(selected);
-    CatUServerHardware.classList.remove(selected);
-    CatOServers.classList.remove(selected);
-    CatONetworkDevices.classList.remove(selected);
-    CatOUserDevices.classList.remove(selected);
-    CatGGenerators.classList.remove(selected);
-    CatCCloud.classList.remove(selected);
-    CatCSaas.classList.remove(selected);
-    CatCManaged.classList.remove(selected);
-    CatDEendUserDevices.classList.remove(selected);
-    CatDNetworkDataTransfer.classList.remove(selected);
-    CatDInfrastructure.classList.remove(selected);
-
-    if (event.target.value === 'node') {
-      CatUEmployeeHardware.classList.add(selected);
-      CatOUserDevices.classList.add(selected);
-      CatCCloud.classList.add(selected);
-      CatCSaas.classList.add(selected);
-      CatDNetworkDataTransfer.classList.add(selected);
-      CatDInfrastructure.classList.add(selected);
-    } else if (event.target.value === 'express') {
-      CatUSoftware.classList.add(selected);
-      CatUEmployeeHardware.classList.add(selected);
-      CatOUserDevices.classList.add(selected);
-      CatCCloud.classList.add(selected);
-      CatCSaas.classList.add(selected);
-      CatDNetworkDataTransfer.classList.add(selected);
-      CatDInfrastructure.classList.add(selected);
-    }
-  });
-</script>
